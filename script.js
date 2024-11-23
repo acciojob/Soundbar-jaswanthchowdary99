@@ -4,12 +4,12 @@ const buttons = document.querySelectorAll('.btn');
 const stopButton = document.querySelector('.stop');
 
 const sounds = {
-  sound1: new Audio("https://www.soundjay.com/button/beep-07.wav"),
-  sound2: new Audio("https://www.soundjay.com/button/beep-10.wav"),
-  sound3: new Audio("https://www.soundjay.com/button/beep-03.wav"),
-  sound4: new Audio("https://www.soundjay.com/button/beep-05.wav"),
-  sound5: new Audio("https://www.soundjay.com/button/beep-09.wav"),
-  sound6: new Audio("https://www.soundjay.com/button/beep-08.wav")
+  sound1: new Audio("/sounds/sound1.mp3"),
+  sound2: new Audio("/sounds/sound2.mp3"),
+  sound3: new Audio("/sounds/sound3.mp3"),
+  sound4: new Audio("/sounds/sound4.mp3"),
+  sound5: new Audio("/sounds/sound5.mp3"),
+  sound6: new Audio("/sounds/sound6.mp3")
 };
 
 let activeSound = null;
