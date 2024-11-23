@@ -3,18 +3,27 @@
 const buttons = document.querySelectorAll('.btn');
 const stopButton = document.querySelector('.stop');
 
-let sounds = [];
+const sounds = {
+  sound1: new Audio("https://www.soundjay.com/button/beep-07.wav"),
+  sound2: new Audio("https://www.soundjay.com/button/beep-10.wav"),
+  sound3: new Audio("https://www.soundjay.com/button/beep-03.wav"),
+  sound4: new Audio("https://www.soundjay.com/button/beep-05.wav"),
+  sound5: new Audio("https://www.soundjay.com/button/beep-09.wav"),
+  sound6: new Audio("https://www.soundjay.com/button/beep-08.wav")
+};
+
+let activeSound = null;
 
 function playSound(e) {
   const soundName = e.target.getAttribute('data-sound');
 
-  const audio = document.createElement('audio');
+  if (activeSound) {
+    activeSound.pause();
+  }
 
-  audio.src = `sounds/${soundName}.mp3`;
-  document.body.appendChild(audio);
-  audio.play();
-
-  sounds.push(audio);
+  activeSound = sounds[soundName];
+  activeSound.currentTime = 0;
+  activeSound.play();
 }
 
 buttons.forEach(button => {
@@ -22,9 +31,7 @@ buttons.forEach(button => {
 });
 
 stopButton.addEventListener('click', () => {
-  sounds.forEach((sound) => {
-    sound.pause();
-    document.body.removeChild(sound);
-  });
-  sounds = [];
-})
+  if (activeSound) {
+    activeSound.pause();
+  }
+});
