@@ -1,31 +1,19 @@
 //your JS code here. If required.
 
-const playingSounds = [];
+let sounds = [];
 
-const soundButtons = document.querySelectorAll('.btn');
+function playSound(e) {
+  const soundName = e.target.getAttribute('data-sound');
+  const audio = new Audio(`sounds/${soundName}.mp3`);
+  audio.play();
+  sounds.push(audio);
+}
 
-soundButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const soundFile = button.dataset.sound + '.mp3';
-    const audio = new Audio(soundFile);
+const stopButton = document.querySelector('.stop');
 
-    audio.play();
-    playingSounds.push(audio);
-
-    audio.addEventListener('ended', () => {
-      const index = playingSounds.indexOf(audio);
-      if (index > -1) {
-        playingSounds.splice(index, 1);
-      }
-    });
+stopButton.addEventListener('click', () => {
+  sounds.forEach((sound) => {
+    sound.pause();
   });
+  sounds = [];
 });
-
-document.querySelector('.stop').addEventListener('click', () => {
-  playingSounds.forEach(audio => {
-    audio.pause();
-    audio.currentTime = 0;  
-  });
-  playingSounds.length = 0; 
-});
-
